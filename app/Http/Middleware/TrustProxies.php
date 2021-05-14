@@ -12,7 +12,14 @@ class TrustProxies extends Middleware
      *
      * @var array
      */
-    protected $proxies;
+     /**
+      * AWSロードバランサによる
+      * Laravelアプリが生成するURLリンクが
+      * httpであるために発生する
+      * Chromeの最新バージョン特有の不具合の対策として
+      * "**"を追加
+      */
+    protected $proxies = "**";
 
     /**
      * The current proxy header mappings.

@@ -13,4 +13,21 @@ class PostsController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->get();
         return view('posts.index', ['posts' => $posts]);
     }
+    
+    public function create()
+    {
+        return view('posts.create');
+    }
+    
+    public function store(Request $request)
+    {
+        $params = $request->validate([
+            'title' => 'required|max:20',
+            'body' => 'required|max:140',
+            ]);
+            
+        Post::create($params);
+        
+        return redirect()->route('top');
+    }
 }
